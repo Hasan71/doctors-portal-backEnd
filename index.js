@@ -11,11 +11,8 @@ app.use(BodyParser.json())
 const uri = process.env.DB_PATH;
 let client = new MongoClient(uri, {useNewUrlParser : true ,  useUnifiedTopology: true });
 
-
-// Root Route
 app.get('/' , (req,res) => res.send("Welcome to Doctors Portal  Backed"))
 
-// Get all Appointments 
 app.get('/appointments', (req, res) => {
     client = new MongoClient(uri, {useNewUrlParser : true,  useUnifiedTopology: true });
     client.connect(conErr => {
@@ -28,7 +25,6 @@ app.get('/appointments', (req, res) => {
 
 })
 
-// Get all Booked Appointments 
 app.get('/bookedAppointments', (req, res) => {
     client = new MongoClient(uri, {useNewUrlParser : true,  useUnifiedTopology: true });
     client.connect(conErr => {
@@ -42,7 +38,6 @@ app.get('/bookedAppointments', (req, res) => {
 })
 
 
-// Insert Appointment Booking 
 app.post('/makeBooking' , (req,res) => {
     const data = req.body;
     console.log(data);
@@ -59,7 +54,7 @@ app.post('/makeBooking' , (req,res) => {
 
 })
 
-// Updating Booking Status
+
 app.post('/updateBookingStatus', (req, res) => {
     const ap = req.body;
     console.log(ap);
@@ -87,7 +82,7 @@ app.post('/updateBookingStatus', (req, res) => {
     });
 })
 
-// Updating Prescription
+
 app.post('/updatePrescription', (req, res) => {
     const ap = req.body;
     console.log(ap);
@@ -116,7 +111,6 @@ app.post('/updatePrescription', (req, res) => {
 })
 
 
-// Updating Appointment Visiting Status
 app.post('/updateVisitingStatus', (req, res) => {
     const ap = req.body;
     client = new MongoClient(uri, {useNewUrlParser : true,  useUnifiedTopology: true });
@@ -145,7 +139,6 @@ app.post('/updateVisitingStatus', (req, res) => {
 
 
 
-// Updating Appointment Date/Time
 
 app.post('/updateAppointmentTime', (req, res) => {
     const ap = req.body;
